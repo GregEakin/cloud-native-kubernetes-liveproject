@@ -40,7 +40,7 @@ spec:
             memory: 50Mi
         livenessProbe:
           httpGet:
-            path: /probe/liveness
+            path: /probes/liveness
             port: 3000
           initialDelaySeconds: 10
           periodSeconds: 30
@@ -48,7 +48,7 @@ spec:
           failureThreshold: 3
         readinessProbe:
           httpGet:
-            path: /probe/readiness
+            path: /probes/readiness
             port: 3000
           initialDelaySeconds: 10
           periodSeconds: 30
