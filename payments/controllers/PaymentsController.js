@@ -11,7 +11,7 @@ class PaymentsController {
     async handleGetPaymentMethod(req, res) {
         const pm = await this.paymentRepository.getPaymentMethod()
 
-        if (Object.entries(pm).length == 0) {
+        if (Object.entries(pm).length === 0) {
             res.status(404)
             res.send({"error": "payment method not found"})
             return
@@ -149,9 +149,9 @@ class PaymentsController {
 
 module.exports = (repositories, logger) => {
 
-    var controller = new PaymentsController(repositories.paymentsRepository, logger)
-    var express = require('express')
-    var router = express.Router()
+    const controller = new PaymentsController(repositories.paymentsRepository, logger)
+    const express = require('express')
+    const router = express.Router()
 
     router.get('/', function (req, res) {
         controller.handleGetPaymentMethod(req, res)

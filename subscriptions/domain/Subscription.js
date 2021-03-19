@@ -30,7 +30,7 @@ class Subscription {
 
     get isActive() {
         
-        if(!this.status || this.status != "active") {
+        if(!this.status || this.status !== "active") {
             return false
         }
 
@@ -67,7 +67,7 @@ class Subscription {
 
         const diff = currentMonths - originalMonths
 
-        if(diff == 0) {
+        if(diff === 0) {
             this.status = "active"
             return
         }

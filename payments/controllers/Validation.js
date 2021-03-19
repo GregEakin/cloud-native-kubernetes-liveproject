@@ -8,7 +8,7 @@ let validateString = (s) => {
         return `${s} is null or undefined`
     }
 
-    if(s.length == 0 || !s.trim()) {
+    if(s.length === 0 || !s.trim()) {
         return `${s} is empty or blank`
     }
 

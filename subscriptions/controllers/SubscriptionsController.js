@@ -8,15 +8,21 @@ class SubscriptionsController {
     }
 
     async handleGetSubscription(req, res) {
-        // TODO: Implementation       
+        // TODO: Implementation
+        res.status(501)
+        res.send({"error": "Not implemented."})
     }
 
     async handleAddSubscription(req, res) {
         // TODO: Implementation       
+        res.status(501)
+        res.send({"error": "Not implemented."})
     }
 
     async handleCancelSubscription(req, res) {
         // TODO: Implementation       
+        res.status(501)
+        res.send({"error": "Not implemented."})
     }
 
     // This method will take a request body as specified in the OpenAPI
@@ -29,12 +35,12 @@ class SubscriptionsController {
 
         let foundError = false
 
-        if(subscriptionErrors.length > 0) {
+        if (subscriptionErrors.length > 0) {
             this.logger.error(`Card validation errors: ${subscriptionErrors}`)
             foundError = true
         }
 
-        if(foundError) {
+        if (foundError) {
             return {
                 "error": true,
                 "errors": {
@@ -49,7 +55,7 @@ class SubscriptionsController {
             "error": false,
             "subscription": subscription
         }
-    }    
+    }
 
     // This method will take a domain representation and transform it
     // into format as specified by the OpenAPI Spec.
@@ -66,9 +72,9 @@ class SubscriptionsController {
 
 module.exports = (repositories, logger) => {
 
-    var controller = new SubscriptionsController(repositories.subscriptionsRepository, logger)
-    var express = require('express')
-    var router = express.Router()
+    const controller = new SubscriptionsController(repositories.subscriptionsRepository, logger);
+    const express = require('express');
+    const router = express.Router();
 
     router.get('/', function (req, res) {
         controller.handleGetSubscription(req, res)

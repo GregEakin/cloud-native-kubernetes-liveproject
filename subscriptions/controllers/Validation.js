@@ -8,7 +8,7 @@ let validateString = (s) => {
         return `${s} is null or undefined`
     }
 
-    if(s.length == 0 || !s.trim()) {
+    if(s.length === 0 || !s.trim()) {
         return `${s} is empty or blank`
     }
 
@@ -18,16 +18,16 @@ let validateString = (s) => {
 let validateSubscription = (product, monthsPurchased) => {
 
     let errors = []
-    let productError = validateString(product)
+    const productError = validateString(product)
 
     if(productError != null) {
-        errors.add(productError)
+        errors.push(productError)
     }
 
     if(monthsPurchased < 1) {
-        errors.add("months purchased must be at least 1")
+        errors.push("months purchased must be at least 1")
     } else if(monthsPurchased > 12) {
-        errors.add("months purchased must not be more than 12")
+        errors.push("months purchased must not be more than 12")
     }
 
     return errors

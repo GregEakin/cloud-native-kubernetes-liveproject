@@ -1,3 +1,4 @@
+docker build -t sns-subscription:latest .\subscriptions --no-cache
 docker build -t sns-payment:latest .\payments --no-cache
 
 # kubectl -n sns rollout restart deployment payment

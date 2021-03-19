@@ -1,11 +1,11 @@
 class ProbesController {
 
     async handleLiveness(req, res) {
-        // TODO: Implementation       
+        res.sendStatus(200)
     }
 
     async handleReadiness(req, res) {
-        // TODO: Implementation       
+        res.sendStatus(200)
     }
 }
 
