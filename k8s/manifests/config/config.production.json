@@ -1,10 +1,10 @@
 {
   "payments": {
-    "host": "payments",
+    "host": "payment",
     "port": 3000
   },
   "subscriptions": {
-    "host": "subscriptions",
+    "host": "subscription",
     "port": 3001,
     "pricePerMonth": 25.00
   },

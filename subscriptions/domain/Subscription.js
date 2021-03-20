@@ -1,9 +1,9 @@
 const axios = require('axios').default
 const moment = require('moment')
 const logger = require('pino')()
-const config = require("../config")()
+const config = JSON.parse(require('fs').readFileSync('./config', 'utf8')) // ${env.CONFIG_DIR}
 
-const pricePerMonth = config.subscription.pricePerMonth
+const pricePerMonth = config.subscriptions.pricePerMonth
 const paymentUrl = `http://${config.payments.host}:${config.payments.port}/api/payment-methods/process`
 
 // This class is the Domain specification for a Subscription.

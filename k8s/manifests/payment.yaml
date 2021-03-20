@@ -50,6 +50,15 @@ spec:
             port: 3000
           initialDelaySeconds: 10
           periodSeconds: 30
+        volumeMounts:
+          - name: config
+            mountPath: "opt/sns/app/config"
+            subPath: "config.production.json"
+            readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: sns-config
 ---
 apiVersion: v1
 kind: Service

@@ -24,7 +24,7 @@ spec:
           - name: NODE_ENV
             value: "production"
           - name: CONFIG_DIR
-            value: "/opt/sns/config"
+            value: "/opt/sns/app/config"
           - name: REDIS_PASSWORD
             valueFrom:
               secretKeyRef:
@@ -52,7 +52,7 @@ spec:
           periodSeconds: 30
         volumeMounts:
           - name: config
-            mountPath: "opt/sns/config"
+            mountPath: "opt/sns/app/config"
             subPath: "config.production.json"
             readOnly: true
       volumes:

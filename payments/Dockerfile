@@ -4,7 +4,6 @@ RUN mkdir -p /opt/sns/app && \
     mkdir -p /opt/sns/logs && \
     chmod 700 /opt/sns/logs
 
-COPY config /opt/sns/app/config 
 COPY controllers /opt/sns/app/controllers
 COPY domain /opt/sns/app/domain
 COPY repositories /opt/sns/app/repositories
