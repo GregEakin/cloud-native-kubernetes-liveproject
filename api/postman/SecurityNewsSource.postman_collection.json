@@ -701,7 +701,7 @@
 					"response": []
 				},
 				{
-					"name": "Get Subscription (after subscription exists) Copy",
+					"name": "Get Subscription (after subscription activated)",
 					"event": [
 						{
 							"listen": "test",
@@ -783,7 +783,7 @@
 					"response": []
 				},
 				{
-					"name": "Get Subscription (after subscription exists) Copy 2",
+					"name": "Get Subscription (after subscription canceled)",
 					"event": [
 						{
 							"listen": "test",

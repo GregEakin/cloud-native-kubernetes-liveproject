@@ -12,8 +12,7 @@ let makeRedisClient = (config) => {
 
 module.exports = (config) => {
 
-    const client = makeRedisClient(config)
-    const subscriptionsRepo = require('./SubscriptionsRepository')(client)
-
+    const redisClient = makeRedisClient(config)
+    const subscriptionsRepo = require('./SubscriptionsRepository')(redisClient)
     return {subscriptionsRepository: subscriptionsRepo}
 }

@@ -11,8 +11,8 @@ class Subscription {
 
     constructor(product, monthsPurchased, datePurchased = moment.utc().toISOString(), status = "pending") {
         this.product = product,
-        this.monthsPurchased = monthsPurchased,
-        this.datePurchasedInternal = moment(datePurchased)
+            this.monthsPurchased = monthsPurchased,
+            this.datePurchasedInternal = moment(datePurchased)
         this.status = status
     }
 
@@ -47,14 +47,11 @@ class Subscription {
         const diff = moment.duration(this.subscriptionEndDate.diff(moment.utc()))
         const months = diff.asMonths()
 
-        if(months <= 0) {
-            return 0
-        }
+        return months <= 0 ? 0 : months
 
-        return months
     }
 
-    // Processes a payment for refund for the chnages to a subscription
+    // Processes a payment for refund for the changes to a subscription
     // given the original subscription data.
     async process(originalSubscription) {
 
@@ -67,12 +64,12 @@ class Subscription {
 
         const diff = currentMonths - originalMonths
 
-        if(diff === 0) {
+        if (diff === 0) {
             this.status = "active"
             return
         }
 
-        if(diff < 0) {
+        if (diff < 0) {
             await this.processRefund(diff * -1 * pricePerMonth)
         } else {
             await this.processPayment(diff * pricePerMonth)
@@ -84,14 +81,14 @@ class Subscription {
     // This method cancels a subscription if it is active.
     async cancel() {
 
-        if(!this.isActive) {
+        if (!this.isActive) {
             logger.info("Subscription is not active. Not cancelling.")
             return
         }
 
         const amount = this.activeMonthsRemaining * pricePerMonth
 
-        if(amount > 0) {
+        if (amount > 0) {
             logger.info(`Refunding: ${amount}`)
             await this.processRefund(amount)
         } else {
@@ -104,15 +101,21 @@ class Subscription {
     // This method will process a payment on the current subscription
     // for the given amount.
     async processPayment(amount) {
-        // TODO: Implement.
-        // This sohhuld communicate with the payment service to make a payment.
+        logger.info(`processPayment ${amount}`)
+
+        const request = {type: 'payment', amount: amount}
+        const res = await axios.post(paymentUrl, request)
+        logger.info(`Got response from payment: ${res.data.status}`)
     }
 
     // This method will process a refund on the current subscription
     // for the given amount.
     async processRefund(amount) {
-        // TODO: Implement.
-        // This should communicate with the payment service to process the refund.
+        logger.info(`processRefund ${amount}`)
+
+        const request = {type: 'refund', amount: amount};
+        const res = await axios.post(paymentUrl, request)
+        logger.info(`Got response from refund: ${res.data.status}`)
     }
 }
 
