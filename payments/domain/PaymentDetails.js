@@ -2,8 +2,8 @@ class PaymentMethod {
 
     constructor(name, address, cardDetails) {
         this.name = name,
-        this.address = address,
-        this.cardDetails = cardDetails
+            this.address = address,
+            this.cardDetails = cardDetails
     }
 }
 

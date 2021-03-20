@@ -10,8 +10,8 @@ class PaymentsRepository {
     async addOrReplacePaymentMethod(paymentMethod) {
 
         let len = await this.client.hlen(paymentMethodKey)
-        
-        if(len > 0) {
+
+        if (len > 0) {
             // If there is already an existing payment method, we're
             // going to replace that. Remove the old one first just
             // to make sure.
@@ -24,8 +24,8 @@ class PaymentsRepository {
 
     async getPaymentMethod() {
         let len = await this.client.hlen(paymentMethodKey)
-        
-        if(len <= 0) {
+
+        if (len <= 0) {
             // If there is already an existing payment method, we're
             // going to replace that. Remove the old one first just
             // to make sure.
@@ -38,8 +38,8 @@ class PaymentsRepository {
 
     async removePaymentMethod() {
         let len = await this.client.hlen(paymentMethodKey)
-        
-        if(len <= 0) {
+
+        if (len <= 0) {
             // If there is already an existing payment method, we're
             // going to replace that. Remove the old one first just
             // to make sure.

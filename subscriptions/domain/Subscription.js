@@ -1,7 +1,7 @@
 const axios = require('axios').default
 const moment = require('moment')
 const logger = require('pino')()
-const config = JSON.parse(require('fs').readFileSync('./config', 'utf8')) // ${env.CONFIG_DIR}
+const config = JSON.parse(require('fs').readFileSync('./config', 'utf8'))
 
 const pricePerMonth = config.subscriptions.pricePerMonth
 const paymentUrl = `http://${config.payments.host}:${config.payments.port}/api/payment-methods/process`

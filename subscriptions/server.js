@@ -1,13 +1,8 @@
 const bodyParser = require("body-parser")
 const express = require("express")
 const logger = require('pino')()
-const config = JSON.parse(require('fs').readFileSync('./config', 'utf8')) // ${env.CONFIG_DIR}
+const config = JSON.parse(require('fs').readFileSync('./config', 'utf8'))
 const app = express();
-
-// app.use((req, res, next) => {
-//     console.log('REQ: %s %s', req.method, req.url);
-//     next();
-// })
 
 app.use(bodyParser.json());
 

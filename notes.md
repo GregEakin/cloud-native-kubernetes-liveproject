@@ -49,4 +49,7 @@ kubectl -n sns get pods -w
 
 docker image prune
 Set-ExecutionPolicy unrestricted
+
+kubectl api-resources
+kubectl get configmap sns-config -n sns -o yaml
 ```

@@ -16,45 +16,45 @@ spec:
         app: payment
     spec:
       containers:
-      - name: payment
-        image: sns-payment:latest
-        ports:
-        - containerPort: 3000
-        env:
-          - name: NODE_ENV
-            value: "production"
-          - name: CONFIG_DIR
-            value: "/opt/sns/app/config"
-          - name: REDIS_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: redis-secrets
-                key: redis_password
-        imagePullPolicy: "Never"
-        resources:
-          requests:
-            cpu: 100m
-            memory: 40Mi
-          limits:
-            cpu: 250m
-            memory: 50Mi
-        livenessProbe:
-          httpGet:
-            path: /probes/liveness
-            port: 3000
-          initialDelaySeconds: 10
-          periodSeconds: 30
-        readinessProbe:
-          httpGet:
-            path: /probes/readiness
-            port: 3000
-          initialDelaySeconds: 10
-          periodSeconds: 30
-        volumeMounts:
-          - name: config
-            mountPath: "opt/sns/app/config"
-            subPath: "config.production.json"
-            readOnly: true
+        - name: payment
+          image: sns-payment:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: CONFIG_DIR
+              value: "/opt/sns/app/config"
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: redis-secrets
+                  key: redis_password
+          imagePullPolicy: "Never"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 40Mi
+            limits:
+              cpu: 250m
+              memory: 50Mi
+          livenessProbe:
+            httpGet:
+              path: /probes/liveness
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /probes/readiness
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          volumeMounts:
+            - name: config
+              mountPath: "opt/sns/app/config"
+              subPath: "config.production.json"
+              readOnly: true
       volumes:
         - name: config
           configMap:
@@ -69,7 +69,7 @@ metadata:
     app: payment
 spec:
   ports:
-  - port: 3000
-    targetPort: 3000
+    - port: 3000
+      targetPort: 3000
   selector:
     app: payment

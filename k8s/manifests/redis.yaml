@@ -16,29 +16,29 @@ spec:
         app: redis
     spec:
       containers:
-      - name: redis
-        image: redis:6.2.1-alpine
-        args: ["/usr/local/etc/redis/redis.conf"]
-        ports:
-        - containerPort: 6379
-        resources:
-          requests:
-            cpu: 125m
-            memory: 85Mi
-          limits:
-            cpu: 250m
-            memory: 160Mi
-        volumeMounts:
-        - name: config
-          readOnly: true
-          mountPath: "/usr/local/etc/redis"
+        - name: redis
+          image: redis:6.2.1-alpine
+          args: [ "/usr/local/etc/redis/redis.conf" ]
+          ports:
+            - containerPort: 6379
+          resources:
+            requests:
+              cpu: 125m
+              memory: 85Mi
+            limits:
+              cpu: 250m
+              memory: 160Mi
+          volumeMounts:
+            - name: config
+              readOnly: true
+              mountPath: "/usr/local/etc/redis"
       volumes:
-      - name: config
-        secret:
-          secretName: redis-secrets
-          items:
-            - key: redis.conf
-              path: redis.conf
+        - name: config
+          secret:
+            secretName: redis-secrets
+            items:
+              - key: redis.conf
+                path: redis.conf
 ---
 apiVersion: v1
 kind: Service
@@ -49,7 +49,7 @@ metadata:
     app: redis
 spec:
   ports:
-  - port: 6379
-    targetPort: 6379
+    - port: 6379
+      targetPort: 6379
   selector:
     app: redis
