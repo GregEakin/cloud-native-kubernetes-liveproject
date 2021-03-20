@@ -17,3 +17,10 @@ secretGenerator:
       - secrets/redis.conf
       - secrets/redis_password
     type: Opaque
+
+configMapGenerator:
+  - name: sns-config
+    behavior: create
+    namespace: sns
+    files:
+      - config/config.production.json

@@ -24,7 +24,7 @@ spec:
           - name: NODE_ENV
             value: "production"
           - name: CONFIG_DIR
-            value: "/opt/sns/app/config"
+            value: "/opt/sns/config"
           - name: REDIS_PASSWORD
             valueFrom:
               secretKeyRef:
@@ -44,16 +44,21 @@ spec:
             port: 3001
           initialDelaySeconds: 10
           periodSeconds: 30
-          timeoutSeconds: 2
-          failureThreshold: 3
         readinessProbe:
           httpGet:
             path: /probes/readiness
             port: 3001
           initialDelaySeconds: 10
           periodSeconds: 30
-          timeoutSeconds: 2
-          failureThreshold: 3
+        volumeMounts:
+          - name: config
+            mountPath: "opt/sns/config"
+            subPath: "config.production.json"
+            readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: sns-config
 ---
 apiVersion: v1
 kind: Service

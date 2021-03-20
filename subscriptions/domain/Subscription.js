@@ -3,8 +3,8 @@ const moment = require('moment')
 const logger = require('pino')()
 const config = require("../config")()
 
-const pricePerMonth = config.pricePerMonth
-const paymentUrl = `${config.paymentUrlBase}/api/payment-methods/process`
+const pricePerMonth = config.subscription.pricePerMonth
+const paymentUrl = `http://${config.payments.host}:${config.payments.port}/api/payment-methods/process`
 
 // This class is the Domain specification for a Subscription.
 class Subscription {
