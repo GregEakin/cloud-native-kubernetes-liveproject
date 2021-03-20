@@ -1,4 +1,4 @@
-const v = require('./Validation')
+const validation = require('./Validation')
 const domain = require('../domain/Subscription')
 
 class SubscriptionsController {
@@ -28,7 +28,6 @@ class SubscriptionsController {
             return
         }
 
-        this.logger.info(`handleAddSubscription: ${subscription.subscription.product}, ${subscription.subscription.monthsPurchased}`)
         const original = await this.subscriptionRepository.getSubscription()
         await subscription.subscription.process(original)
         await this.subscriptionRepository.addOrReplaceSubscription(subscription.subscription)
@@ -55,7 +54,7 @@ class SubscriptionsController {
     transformToDomainFormat(body) {
 
         const {product, monthsPurchased} = body
-        const subscriptionErrors = v.validateSubscription(product, monthsPurchased)
+        const subscriptionErrors = validation.validateSubscription(product, monthsPurchased)
         let foundError = false
         if (subscriptionErrors.length > 0) {
             this.logger.error(`Card validation errors: ${subscriptionErrors}`)
