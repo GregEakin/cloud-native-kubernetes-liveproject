@@ -29,8 +29,8 @@ class Subscription {
     }
 
     get isActive() {
-        
-        if(!this.status || this.status !== "active") {
+
+        if (!this.status || this.status !== "active") {
             return false
         }
 
@@ -40,7 +40,7 @@ class Subscription {
     // Returns the active months remaining for the subscription.
     get activeMonthsRemaining() {
 
-        if(!this.isActive) {
+        if (!this.isActive) {
             return 0
         }
 
@@ -58,7 +58,7 @@ class Subscription {
         const currentMonths = this.monthsPurchased
         let originalMonths = 0
 
-        if(originalSubscription != null && originalSubscription.isActive) {
+        if (originalSubscription != null && originalSubscription.isActive) {
             originalMonths = originalSubscription.monthsPurchased
         }
 
