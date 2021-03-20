@@ -1,3 +1,4 @@
+```
 minikube start -p sns --vm-driver hyperv --memory 4096 --cpus 2
 minikube -p sns docker-env
 & minikube -p sns docker-env | Invoke-Expression
@@ -48,3 +49,4 @@ kubectl -n sns get pods -w
 
 docker image prune
 Set-ExecutionPolicy unrestricted
+```
