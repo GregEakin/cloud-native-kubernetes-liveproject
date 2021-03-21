@@ -13,11 +13,17 @@ resources:
 secretGenerator:
   - name: redis-secrets
     namespace: sns
+    type: Opaque
     files:
       - secrets/redis.conf
       - secrets/redis_password
-    type: Opaque
-
+  - name: ingress-tls
+    namespace: sns
+    type: "kubernetes.io/tls"
+    files:
+    - tls.crt=secrets/cert.pem
+    - tls.key=secrets/key.pem
+      
 configMapGenerator:
   - name: sns-config
     behavior: create

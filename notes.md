@@ -9,6 +9,7 @@ docker build -t sns-payment:latest .
 
 
 kubectl get secrets
+kubectl get secrets -n sns
 kubectl describe secrets/redis-secrets -n sns
 kubectl get secret redis-secrets -n sns -o yaml
 
@@ -72,4 +73,7 @@ kubectl exec -it task-pv-pod -- /bin/bash
 kubectl delete pod task-pv-pod
 kubectl delete pvc redis-claim
 kubectl delete pv redis-vol
+
+kubectl get csr
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj "/C=US/ST=California/L=SoCal/O=eakin.dev/OU=rnd/CN=www.eakin.dev"
 ```
