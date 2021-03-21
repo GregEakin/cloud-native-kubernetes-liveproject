@@ -76,4 +76,15 @@ kubectl delete pv redis-vol
 
 kubectl get csr
 openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj "/C=US/ST=California/L=SoCal/O=eakin.dev/OU=rnd/CN=www.eakin.dev"
+
+minikube profile list
+minikube addons list -p sns
+minikube addons enable ingress -p sns
+kubectl get po --all-namespaces
+
+kubectl api-resources #List the API resources that are available.
+kubectl api-versions  #List the API versions that are available.
+
+kubectl explain --api-version=networking.k8s.io/v1beta1 ingress.spec.rules.http.paths.backend
+
 ```

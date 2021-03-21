@@ -17,6 +17,6 @@ RUN chmod 700 docker-entrypoint.sh && \
     dos2unix docker-entrypoint.sh && \
     npm install
 
-EXPOSE 3000
+EXPOSE 3001
 
 ENTRYPOINT ["./docker-entrypoint.sh"]

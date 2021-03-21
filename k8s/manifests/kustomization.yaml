@@ -5,10 +5,11 @@ generatorOptions:
   disableNameSuffixHash: true
 
 resources:
-- ns.yaml
-- redis.yaml
-- payment.yaml
-- subscription.yaml
+  - ns.yaml
+  - redis.yaml
+  - payment.yaml
+  - subscription.yaml
+  - ingress.yaml
 
 secretGenerator:
   - name: redis-secrets
@@ -21,9 +22,9 @@ secretGenerator:
     namespace: sns
     type: "kubernetes.io/tls"
     files:
-    - tls.crt=secrets/cert.pem
-    - tls.key=secrets/key.pem
-      
+      - tls.crt=secrets/cert.pem
+      - tls.key=secrets/key.pem
+
 configMapGenerator:
   - name: sns-config
     behavior: create
