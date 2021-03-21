@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: redis
   namespace: sns
@@ -9,6 +9,7 @@ spec:
   selector:
     matchLabels:
       app: redis
+  serviceName: "redis"
   replicas: 1
   template:
     metadata:
@@ -18,7 +19,10 @@ spec:
       containers:
         - name: redis
           image: redis:6.2.1-alpine
-          args: [ "/usr/local/etc/redis/redis.conf" ]
+          args:
+            - "/usr/local/etc/redis/redis.conf"
+            - "--appendonly"
+            - "yes"
           ports:
             - containerPort: 6379
           resources:
@@ -29,16 +33,28 @@ spec:
               cpu: 250m
               memory: 160Mi
           volumeMounts:
-            - name: config
+            - name: redis-cfg
               readOnly: true
               mountPath: "/usr/local/etc/redis"
+            - name: redis-vol
+              mountPath: "/data"
       volumes:
-        - name: config
+        - name: redis-cfg
           secret:
             secretName: redis-secrets
             items:
               - key: redis.conf
                 path: redis.conf
+  volumeClaimTemplates:
+    - metadata:
+        name: redis-vol
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        storageClassName: "standard"
+        resources:
+          requests:
+            storage: 1Gi
 ---
 apiVersion: v1
 kind: Service
@@ -51,5 +67,6 @@ spec:
   ports:
     - port: 6379
       targetPort: 6379
+  clusterIP: None
   selector:
     app: redis

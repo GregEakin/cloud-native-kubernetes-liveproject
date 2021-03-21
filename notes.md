@@ -52,4 +52,24 @@ Set-ExecutionPolicy unrestricted
 
 kubectl api-resources
 kubectl get configmap sns-config -n sns -o yaml
+
+kubectl get pvc www -o yaml
+kubectl apply -f test.yaml service/nginx unchanged statefulset.apps/web configured
+
+kubectl apply -f .\k8s\manifests\redis-volume.yaml
+kubectl delete -f .\k8s\manifests\redis-volume.yaml
+kubectl get pv redis-vol-redis-0
+kubectl get pv redis-vol-redis-0 -o yaml
+
+kubectl.exe apply -f .\pv-volume.yaml
+kubectl get pv redis-vol
+kubectl.exe apply -f .\pv-claim.yaml
+kubectl get pv redis-vol
+kubectl get pvc redis-claim
+kubectl apply -f https://k8s.io/examples/pods/storage/pv-pod.yaml
+kubectl get pod task-pv-pod
+kubectl exec -it task-pv-pod -- /bin/bash
+kubectl delete pod task-pv-pod
+kubectl delete pvc redis-claim
+kubectl delete pv redis-vol
 ```

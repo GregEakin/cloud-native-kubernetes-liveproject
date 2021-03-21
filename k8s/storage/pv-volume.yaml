@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: redis-vol
+  labels:
+    type: local
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 2Gi
+  hostPath:
+    path: "C:\\users\\gregp\\redis.db"
+    type: ""
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: redis-db
+  volumeMode: Filesystem
