@@ -22,8 +22,8 @@ secretGenerator:
     namespace: sns
     type: "kubernetes.io/tls"
     files:
-      - tls.crt=secrets/cert.pem
-      - tls.key=secrets/key.pem
+      - tls.crt=secrets/tls.crt
+      - tls.key=secrets/tls.key
 
 configMapGenerator:
   - name: sns-config

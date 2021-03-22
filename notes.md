@@ -81,6 +81,7 @@ minikube profile list
 minikube addons list -p sns
 minikube addons enable ingress -p sns
 kubectl get po --all-namespaces
+kubectl get svc --all-namespaces
 
 kubectl api-resources #List the API resources that are available.
 kubectl api-versions  #List the API versions that are available.
