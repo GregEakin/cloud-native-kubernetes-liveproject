@@ -91,6 +91,8 @@ kubectl explain --api-version=networking.k8s.io/v1beta1 ingress.spec.rules.http.
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboarddashboard/v2.0.0/aio/deploy/recommended.yaml
 kubectl proxy
 
+kubectl get ingress ingress-sns -n sns
+kubectl describe ingress ingress-sns -n sns
 kubectl edit deployment nginx-ingress-controller -n ingress-nginx
 
 minikube dashboard -p sns

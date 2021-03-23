@@ -9,7 +9,7 @@ metadata:
 spec:
   tls:
     - hosts:
-        - ingress-nginx-controller-65cf89dc4f-fj9xd
+        - localhost
       secretName: ingress-tls
   rules:
     - http:
