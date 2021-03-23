@@ -9,23 +9,22 @@ metadata:
 spec:
   tls:
     - hosts:
-        - localhost
+        - ingress-nginx-controller-65cf89dc4f-fj9xd
       secretName: ingress-tls
   rules:
-    - host: localhost
-      http:
+    - http:
         paths:
-          - backend:
+          - path: /api/payment-methods
+            pathType: Prefix
+            backend:
               service:
                 name: payment
                 port:
                   number: 3000
-            path: /api/payment-methods
+          - path: /api/subscriptions
             pathType: Prefix
-          - backend:
+            backend:
               service:
                 name: subscription
                 port:
                   number: 3001
-            path: /api/subscriptions
-            pathType: Prefix

@@ -88,8 +88,10 @@ kubectl api-versions  #List the API versions that are available.
 
 kubectl explain --api-version=networking.k8s.io/v1beta1 ingress.spec.rules.http.paths.backend
 
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboarddashboard/v2.0.0/aio/deploy/recommended.yaml
 kubectl proxy
 
 kubectl edit deployment nginx-ingress-controller -n ingress-nginx
+
+minikube dashboard -p sns
 ```
