@@ -1,11 +1,17 @@
 class ProbesController {
 
     async handleLiveness(req, res) {
-        res.send({"ok": true})
+        res.send({
+            "serviceName": "subscriptions",
+            "status": true
+        });
     }
 
     async handleReadiness(req, res) {
-        res.send({"ok": true})
+        res.send({
+            "serviceName": "subscriptions",
+            "status": true
+        });
     }
 }
 
