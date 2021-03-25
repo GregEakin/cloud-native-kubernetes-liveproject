@@ -96,4 +96,13 @@ kubectl describe ingress ingress-sns -n sns
 kubectl edit deployment nginx-ingress-controller -n ingress-nginx
 
 minikube dashboard -p sns
+
+kubectl get sa --all-namespaces
+kubectl describe sa default -n sns
+kubectl describe secret default-token-8cdjm -n sns
+
+kubectl get sa appuser -n sns -o json
+kubectl get secret appuser-token-9h5px -o json
+
+kubectl get deploy,svc,po -n sns
 ```

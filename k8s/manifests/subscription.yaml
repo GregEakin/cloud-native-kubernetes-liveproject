@@ -15,6 +15,12 @@ spec:
       labels:
         app: subscription
     spec:
+      serviceAccountName: appuser
+      securityContext:
+        runAsUser: 1001
+        fsGroup: 1001
+        runAsNonRoot: true
+        runAsGroup: 1001
       containers:
         - name: subscription
           image: sns-subscription:latest
@@ -42,19 +48,25 @@ spec:
             httpGet:
               path: /probes/liveness
               port: 3001
-            initialDelaySeconds: 10
-            periodSeconds: 30
+            initialDelaySeconds: 20
+            periodSeconds: 45
           readinessProbe:
             httpGet:
               path: /probes/readiness
               port: 3001
-            initialDelaySeconds: 10
-            periodSeconds: 30
+            initialDelaySeconds: 20
+            periodSeconds: 45
           volumeMounts:
             - name: config
               mountPath: "opt/sns/app/config"
               subPath: "config.production.json"
               readOnly: true
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 1001
+            runAsGroup: 1001
       volumes:
         - name: config
           configMap:
@@ -73,3 +85,4 @@ spec:
       targetPort: 3001
   selector:
     app: subscription
+  type: ClusterIP

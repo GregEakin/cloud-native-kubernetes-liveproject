@@ -7,6 +7,7 @@ generatorOptions:
 resources:
   - ns.yaml
   - redis.yaml
+  - service-account.yaml
   - payment.yaml
   - subscription.yaml
   - ingress.yaml
