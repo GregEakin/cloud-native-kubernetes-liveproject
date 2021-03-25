@@ -1,21 +1,21 @@
 FROM node:14.4.0-alpine3.11
 
-ENV USER="appuser"
-ENV GROUP="appgroup"
-ENV UID="1001"
-ENV GID="1001"
+#ENV USER="node"
+#ENV GROUP="node"
+ENV UID="1000"
+ENV GID="1000"
 
-RUN addgroup \
-    --gid "$GID" \
-    "$GROUP"
-
-RUN adduser \
-    --disabled-password \
-    --uid "$UID" \
-    --ingroup "$GROUP" \
-    --gecos "App user" \
-    --shell "/bin/sh" \
-    "$USER"
+#RUN addgroup \
+#    --gid "$GID" \
+#    "$GROUP"
+#
+#RUN adduser \
+#    --disabled-password \
+#    --uid "$UID" \
+#    --ingroup "$GROUP" \
+#    --gecos "App user" \
+#    --shell "/bin/sh" \
+#    "$USER"
 
 RUN mkdir -p /opt/sns && \
     chown -R "$UID":"$GID" /opt/sns

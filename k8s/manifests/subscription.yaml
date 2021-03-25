@@ -17,10 +17,10 @@ spec:
     spec:
       serviceAccountName: appuser
       securityContext:
-        runAsUser: 1001
-        fsGroup: 1001
+        runAsUser: 1000
+        fsGroup: 1000
         runAsNonRoot: true
-        runAsGroup: 1001
+        runAsGroup: 1000
       containers:
         - name: subscription
           image: sns-subscription:latest
@@ -65,8 +65,8 @@ spec:
             readOnlyRootFilesystem: true
             allowPrivilegeEscalation: false
             runAsNonRoot: true
-            runAsUser: 1001
-            runAsGroup: 1001
+            runAsUser: 1000
+            runAsGroup: 1000
       volumes:
         - name: config
           configMap:
