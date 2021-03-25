@@ -16,6 +16,11 @@ spec:
       labels:
         app: redis
     spec:
+      serviceAccountName: appuser
+      securityContext:
+        runAsUser: 999
+        runAsGroup: 1000
+        fsGroup: 1000
       containers:
         - name: redis
           image: redis:6.2.1-alpine
@@ -38,6 +43,11 @@ spec:
               mountPath: "/usr/local/etc/redis"
             - name: redis-vol
               mountPath: "/data"
+          securityContext:
+            runAsUser: 999
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            readOnlyRootFilesystem: true
       volumes:
         - name: redis-cfg
           secret:
