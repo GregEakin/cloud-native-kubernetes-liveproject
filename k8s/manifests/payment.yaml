@@ -18,9 +18,8 @@ spec:
       serviceAccountName: appuser
       securityContext:
         runAsUser: 1000
-        fsGroup: 1000
-        runAsNonRoot: true
         runAsGroup: 1000
+        fsGroup: 1000
       containers:
         - name: payment
           image: sns-payment:latest
@@ -62,11 +61,10 @@ spec:
               subPath: "config.production.json"
               readOnly: true
           securityContext:
-            readOnlyRootFilesystem: true
+            runAsUser: 1000
             allowPrivilegeEscalation: false
             runAsNonRoot: true
-            runAsUser: 1000
-            runAsGroup: 1000
+            readOnlyRootFilesystem: true
       volumes:
         - name: config
           configMap:
