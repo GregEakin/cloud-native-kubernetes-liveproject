@@ -15,7 +15,7 @@ class ProbesController {
     }
 }
 
-module.exports = (repositories) => {
+module.exports = () => {
 
     const controller = new ProbesController()
     const express = require('express')

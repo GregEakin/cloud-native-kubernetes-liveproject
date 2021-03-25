@@ -4,14 +4,13 @@ const logger = require('pino')()
 const config = JSON.parse(require('fs').readFileSync('./config', 'utf8'))
 const app = express();
 
-
 app.use(bodyParser.json());
 
 const loadRepositories = require("./repositories")
 const loadControllers = require("./controllers")
 
 const repositories = loadRepositories(config)
-loadControllers(app, repositories, logger)
+const controllers = loadControllers(app, repositories, logger)
 
 const server_port = config.payments.port
 app.listen(server_port, () => {

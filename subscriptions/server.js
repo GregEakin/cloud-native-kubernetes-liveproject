@@ -10,7 +10,7 @@ const loadRepositories = require("./repositories")
 const loadControllers = require("./controllers")
 
 const repositories = loadRepositories(config)
-loadControllers(app, repositories, logger)
+const controllers = loadControllers(app, repositories, logger)
 
 const server_port = config.subscriptions.port
 app.listen(server_port, () => {
