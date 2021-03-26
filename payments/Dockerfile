@@ -1,4 +1,4 @@
-FROM node:14.4.0-alpine3.11
+FROM node:15.12.0-alpine3.11
 
 ENV UID="1000"
 ENV GID="1000"
