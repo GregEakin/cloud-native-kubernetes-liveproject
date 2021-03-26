@@ -14,6 +14,5 @@ module.exports = (config) => {
 
     const redisClient = makeRedisClient(config)
     const paymentsRepo = require('./PaymentsRepository')(redisClient)
-
     return {paymentsRepository: paymentsRepo}
 }

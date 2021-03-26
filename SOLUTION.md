@@ -1,6 +1,6 @@
 # Commands to Run for the Full Solution
 
-This solution assumes you're properly setup you're Docker and Minikube environments.
+This solution assumes you've properly set up your Docker and Minikube environments.
 
 ## Build Payment docker image
 
