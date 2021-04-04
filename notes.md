@@ -4,6 +4,7 @@ minikube -p sns docker-env
 & minikube -p sns docker-env | Invoke-Expression
 kubectl -n sns port-forward svc/payment 3000:3000
 minikube stop -p sns
+minikube delete -p sns
 
 docker build -t sns-payment:latest .
 
